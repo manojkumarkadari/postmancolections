@@ -1,0 +1,25 @@
+[
+{
+    "firstname" : "manoj1",
+    "lastname" : "kumar1",
+    "totalprice" : 1111,
+    "depositpaid" : false,
+    "bookingdates" : {
+        "checkin" : "2018-02-01",
+        "checkout" : "2019-02-01"
+    },
+    "additionalneeds" : "lunch"
+},
+{
+    "firstname" : "manoj2",
+    "lastname" : "kumar1",
+    "totalprice" : 1111,
+    "depositpaid" : false,
+    "bookingdates" : {
+        "checkin" : "2018-02-01",
+        "checkout" : "2019-02-01"
+    },
+    "additionalneeds" : "lunch"
+}
+
+]

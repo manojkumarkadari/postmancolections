@@ -1,0 +1,83 @@
+{
+	"info": {
+		"_postman_id": "7527e8e4-9c5c-4ebe-9359-86e90795c4b0",
+		"name": "DataDrivenAPIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9840205"
+	},
+	"item": [
+		{
+			"name": "Createusers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Status code check\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"check response data\",function(){\r",
+							"\r",
+							"const jsonData = pm.response.json();\r",
+							"pm.expect(jsonData.name).to.eql(pm.iterationData.get(\"name\"));\r",
+							"pm.expect(jsonData.gender).to.eql(pm.iterationData.get(\"gender\"));\r",
+							"pm.expect(jsonData.status).to.eql(pm.iterationData.get(\"status\"));\r",
+							"//fetch the email for assertion\r",
+							"const rawBodyjson = pm.request.body.raw;\r",
+							"//json to JS object\r",
+							"const reqbody =JSON.parse(rawBodyjson);\r",
+							"//assertion\r",
+							"pm.expect(jsonData.email).to.eql(reqbody.email);\r",
+							"console.log(\"email is matching with \"+reqbody.email );\r",
+							"\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 2ccef6850fb810e5876729630d94ad99fe5d592a63afe909524d3b89c68eba66",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"{{name}}\",\r\n    \"gender\":\"{{gender}}\",\r\n    \"email\":\"{{$randomExampleEmail}}\",\r\n    \"status\":\"{{status}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/public/v2/users",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateUserById",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
